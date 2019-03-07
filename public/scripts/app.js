@@ -40,10 +40,21 @@ var app = {
 );
 
 var user = {
-    name: 'Andrew',
+    name: 'Ed',
     age: 27,
     location: 'California'
 };
+
+function getLocation(location) {
+    if (location) {
+        return React.createElement(
+            'p',
+            null,
+            'Location: ',
+            location
+        );
+    } //can return undefined but it implicilty returns undefined
+}
 
 var templateTwo = React.createElement(
     'div',
@@ -51,7 +62,7 @@ var templateTwo = React.createElement(
     React.createElement(
         'h1',
         null,
-        user.name
+        user.name ? user.name : 'Anonymous'
     ),
     React.createElement(
         'p',
@@ -59,16 +70,11 @@ var templateTwo = React.createElement(
         'Age: ',
         user.age
     ),
-    React.createElement(
-        'p',
-        null,
-        'Location: ',
-        user.location
-    )
+    getLocation(user.location)
 );
 
 var appRoot = document.getElementById('app');
 
 //first param is pass in template
 //second param is where to render
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);

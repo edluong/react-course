@@ -23,16 +23,23 @@ var template = (
 );
 
 var user = {
-    name: 'Andrew',
+    name: 'Ed',
     age: 27,
     location: 'California'
 };
 
+
+function getLocation(location) {
+    if (location){
+        return <p>Location: {location}</p>;
+    } //can return undefined but it implicilty returns undefined
+}
+
 var templateTwo = (
     <div>
-        <h1>{user.name}</h1> 
+        <h1>{user.name ? user.name : 'Anonymous'}</h1> 
         <p>Age: {user.age}</p>
-        <p>Location: {user.location}</p>
+        {getLocation(user.location)}
     </div>
 )
 
@@ -40,4 +47,4 @@ var appRoot = document.getElementById('app');
 
 //first param is pass in template
 //second param is where to render
-ReactDOM.render(template,appRoot); 
+ReactDOM.render(templateTwo,appRoot); 
