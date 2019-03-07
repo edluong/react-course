@@ -2,20 +2,26 @@
 
 console.log('App.js is running!');
 
-//JSX - JavaScript XML
-//must have a single root tag to display; usually wrap with a wrapper div
-var template = React.createElement(
+//create app object
+
+var app = {
+    title: 'Indecision App',
+    subtitle: 'Put your life in the hands of a computer'
+
+    //JSX - JavaScript XML
+    //must have a single root tag to display; usually wrap with a wrapper div
+};var template = React.createElement(
     'div',
     null,
     React.createElement(
         'h1',
         null,
-        'Indecision App'
+        app.title
     ),
     React.createElement(
         'p',
         null,
-        'This is some info'
+        app.subtitle
     ),
     React.createElement(
         'ol',
@@ -33,23 +39,31 @@ var template = React.createElement(
     )
 );
 
+var user = {
+    name: 'Andrew',
+    age: 27,
+    location: 'California'
+};
+
 var templateTwo = React.createElement(
     'div',
     null,
     React.createElement(
         'h1',
         null,
-        'Ed Luong'
+        user.name
     ),
     React.createElement(
         'p',
         null,
-        'Age: 27'
+        'Age: ',
+        user.age
     ),
     React.createElement(
         'p',
         null,
-        'Location: California'
+        'Location: ',
+        user.location
     )
 );
 
@@ -57,4 +71,4 @@ var appRoot = document.getElementById('app');
 
 //first param is pass in template
 //second param is where to render
-ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(template, appRoot);
