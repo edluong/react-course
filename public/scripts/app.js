@@ -1,29 +1,63 @@
 'use strict';
 
-var square = function square(x) {
-    return x * x;
-};
+//Topics
+// arguments object - no longer bound with arrow functions
+// this keyword - no longer bound
 
-//All arrow functions are anonymous
-// const squareArrow = (x) => {
-//     return x * x;
+
+// const add = function (a,b) {
+
+//     console.log(arguments);
+//     return a + b;
 // };
 
-//Arrow function expression syntax
-//equavalent to the top; explicitly return the values
-var squareArrow = function squareArrow(x) {
-    return x * x;
+//Converting to es6
+//below will crash, cannot access arguments; ReferenceError: arguments is not defined
+// const add = (a,b) =>{
+//     console.log(arguments);
+//     return a + b;
+// }
+
+var add = function add(a, b) {
+  return a + b;
 };
 
-console.log(squareArrow(9));
+console.log(add(55, 1));
 
-var getFirstName = function getFirstName(fullName) {
-    return fullName.split(' ')[0];
+//this keyword - no longer bound
+var user = {
+  name: 'Ed',
+  cities: ['Santa Barbara', 'Taipei'],
+  printPlacesLived: function printPlacesLived() {
+    var _this = this;
+
+    //es6 syntax for methods
+    //const that = this; //common work around to access variables; in es6 this is not necessary anymore
+
+    //using the course way of printing out many items; transform on the items
+    return this.cities.map(function (city) {
+      return _this.name + ' has lived in ' + city;
+    }); //does not create a new array;
+  }
 };
 
-var getFirstNameShort = function getFirstNameShort(fullName) {
-    return fullName.split(' ')[0];
+console.log(user.printPlacesLived());
+
+//one example would to not change the printPlacesLived to use arrow function. This would go up to the parent scope, 
+//which cities does not exist.
+
+//challenge
+
+var multiplier = {
+  numbers: [1, 2, 3],
+  multiplyBy: 2,
+  multiply: function multiply() {
+    var _this2 = this;
+
+    return this.numbers.map(function (num) {
+      return _this2.multiplyBy * num;
+    });
+  }
 };
 
-console.log(getFirstName('Ed L'));
-console.log(getFirstNameShort('Ed L'));
+console.log(multiplier.multiply());
