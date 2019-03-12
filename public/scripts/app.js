@@ -1,86 +1,29 @@
 'use strict';
 
-console.log('App.js is running!');
-
-//create app object
-
-var app = {
-    title: 'Indecision App',
-    subtitle: 'Put your life in the hands of a computer',
-    options: ['One', 'Two']
-
-    //JSX - JavaScript XML
-    //must have a single root tag to display; usually wrap with a wrapper div
-};var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        app.title
-    ),
-    app.subtitle && React.createElement(
-        'p',
-        null,
-        app.subtitle
-    ),
-    React.createElement(
-        'p',
-        null,
-        app.options.length > 0 ? 'Here are your options' : 'No options'
-    ),
-    React.createElement(
-        'ol',
-        null,
-        React.createElement(
-            'li',
-            null,
-            'Item one'
-        ),
-        React.createElement(
-            'li',
-            null,
-            'Item two'
-        )
-    )
-);
-
-var user = {
-    name: 'Ed',
-    age: 27,
-    location: 'California'
+var square = function square(x) {
+    return x * x;
 };
 
-function getLocation(location) {
-    if (location) {
-        return React.createElement(
-            'p',
-            null,
-            'Location: ',
-            location
-        );
-    } //can return undefined but it implicilty returns undefined
-}
+//All arrow functions are anonymous
+// const squareArrow = (x) => {
+//     return x * x;
+// };
 
-var templateTwo = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        user.name ? user.name : 'Anonymous'
-    ),
-    user.age && user.age >= 18 && React.createElement(
-        'p',
-        null,
-        'Age: ',
-        user.age
-    ),
-    getLocation(user.location)
-);
+//Arrow function expression syntax
+//equavalent to the top; explicitly return the values
+var squareArrow = function squareArrow(x) {
+    return x * x;
+};
 
-var appRoot = document.getElementById('app');
+console.log(squareArrow(9));
 
-//first param is pass in template
-//second param is where to render
-ReactDOM.render(template, appRoot);
+var getFirstName = function getFirstName(fullName) {
+    return fullName.split(' ')[0];
+};
+
+var getFirstNameShort = function getFirstNameShort(fullName) {
+    return fullName.split(' ')[0];
+};
+
+console.log(getFirstName('Ed L'));
+console.log(getFirstNameShort('Ed L'));
