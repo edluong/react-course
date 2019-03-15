@@ -46,29 +46,35 @@ const template = (
 let count = 0;
 
 const addOne = () =>{
-    console.log('addOne');
+    count++;
+    renderCounterApp();
 };
 
-const minusOne = () =>{
-    console.log('minusOne');
+const minusOne = () => {
+    count--;
+    renderCounterApp();
 }
 
-const reset = () =>{
-    console.log('reset');
+const reset = () => {
+    count = 0;
+    renderCounterApp();
 }
-
-
-const templateTwo = (
-    <div>
-        <h1>Count: {count}</h1>
-        <button onClick={addOne}>+1</button>
-        <button onClick={minusOne}>-1</button>
-        <button onClick={reset}>reset</button>
-    </div>
-);
 
 const appRoot = document.getElementById('app');
+
+const renderCounterApp = () => {
+    const templateTwo = (
+        <div>
+            <h1>Count: {count}</h1>
+            <button onClick={addOne}>+1</button>
+            <button onClick={minusOne}>-1</button>
+            <button onClick={reset}>reset</button>
+        </div>
+    );
 
 //first param is pass in template
 //second param is where to render
 ReactDOM.render(templateTwo,appRoot); 
+};
+
+renderCounterApp();
