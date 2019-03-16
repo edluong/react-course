@@ -30,6 +30,7 @@ const onRemoveAll = () => {
 
 const appRoot = document.getElementById('app');
 
+
 const renderOptions = () => {
     //JSX - JavaScript XML
     //must have a single root tag to display; usually wrap with a wrapper div
@@ -41,8 +42,9 @@ const renderOptions = () => {
             <p>{app.options.length}</p>
             <button onClick={onRemoveAll}>Remove All</button>
             <ol>
-                <li>Item one</li>
-                <li>Item two</li>
+            {
+                app.options.map((option) => <li key={option}>{option}</li>)
+            }
             </ol>
             <form onSubmit={onFormSubmit}>
             <input type="text" name="option"/>
