@@ -1,98 +1,46 @@
 'use strict';
 
-console.log('App.js is running!');
-
-//create app object
-
-var app = {
-    title: 'Indecision App',
-    subtitle: 'Put your life in the hands of a computer',
-    options: []
-};
-
-var onFormSubmit = function onFormSubmit(e) {
-    e.preventDefault(); //stop full page refresh
-
-    var option = e.target.elements.option.value; //point to the event that started on. (event object)
-
-    if (option) {
-        app.options.push(option);
-        e.target.elements.option.value = ''; //reset the textbox to nothing again
-        renderOptions(); //re - render the screen
-    }
-};
-
-//remove all the elements from the options array in app
-var onRemoveAll = function onRemoveAll() {
-    app.options.length = 0; //set the length of the array to 0; which will remove elements
-    renderOptions();
-};
-
-var onMakeDecision = function onMakeDecision() {
-    var randomNum = Math.floor(Math.random() * app.options.length);
-    var option = app.options[randomNum];
-    alert(option);
-};
-
 var appRoot = document.getElementById('app');
 
-var renderOptions = function renderOptions() {
-    //JSX - JavaScript XML
-    //must have a single root tag to display; usually wrap with a wrapper div
+var app = {
+    visible: false
+};
+
+var onShowDetail = function onShowDetail() {
+    // if (app.visible){
+    //     app.visible = false;
+    // }else {
+    //     app.visible = true;
+    // }
+
+    app.visible = !app.visible; //rewrite based on watching solution vid
+    render();
+};
+
+var render = function render() {
+
     var template = React.createElement(
         'div',
         null,
         React.createElement(
             'h1',
             null,
-            app.title
-        ),
-        app.subtitle && React.createElement(
-            'p',
-            null,
-            app.subtitle
-        ),
-        React.createElement(
-            'p',
-            null,
-            app.options.length > 0 ? 'Here are your options' : 'No options'
+            'Visibility Toggle'
         ),
         React.createElement(
             'button',
-            { disabled: app.options.length === 0, onClick: onMakeDecision },
-            'What should I do?'
+            { onClick: onShowDetail },
+            app.visible ? 'Hide' : 'Show',
+            ' details'
         ),
         React.createElement(
-            'button',
-            { onClick: onRemoveAll },
-            'Remove All'
-        ),
-        React.createElement(
-            'ol',
+            'p',
             null,
-            app.options.map(function (option) {
-                return React.createElement(
-                    'li',
-                    { key: option },
-                    option
-                );
-            })
-        ),
-        React.createElement(
-            'form',
-            { onSubmit: onFormSubmit },
-            React.createElement('input', { type: 'text', name: 'option' }),
-            React.createElement(
-                'button',
-                null,
-                'Add Option'
-            )
+            app.visible && 'Hey. These are some details you can now see!'
         )
     );
 
-    //render the template to the screen    
     ReactDOM.render(template, appRoot);
 };
 
-// render the template the first time
-renderOptions();
+render();
