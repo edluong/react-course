@@ -28,10 +28,14 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+
+    handlePick(){
+        alert('handlePick');
+    }
     render(){
         return (
             <div>
-                <button>What should I do?</button>
+                <button onClick={this.handlePick}>What should I do?</button>
             </div>
         );
     }
@@ -49,9 +53,13 @@ class Option extends React.Component {
 }
 
 class Options extends React.Component {
+    removeAll(){
+        alert('Remove All');
+    }
     render(){
         return (
             <div>
+                <button onClick={this.removeAll}>Remove All</button>
                 {
                   this.props.options.map((option) => <Option key={option} optionText={option} />)
                 }
@@ -61,10 +69,27 @@ class Options extends React.Component {
 }
 
 class AddOption extends React.Component {
-    render(){
-        return(
+    
+    handleAddOption(e){
+
+        e.preventDefault(); //prevent fullpage refresh
+ 
+        const option = e.target.elements.option.value.trim(); //get the value
+ 
+        if (option){
+            alert(option);
+            e.target.elements.option.value = '';
+        }
+     }
+    
+     //don't forget to have this in front of the method
+    render() {
+        return (
             <div>
-                Add Option component here
+                <form onSubmit={this.handleAddOption}>
+                    <input type="text" name="option"/>
+                    <button>Add Option</button>
+                </form>
             </div>
         );
     }
