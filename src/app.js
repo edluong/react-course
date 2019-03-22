@@ -1,3 +1,14 @@
+// const obj = {
+//     name: 'Ed',
+//     getName() {
+//         return this.name;
+//     }
+// }
+
+// //a common problem is losing this reference
+// const getName = obj.getName.bind({name:'Edmund'}); //bind() is a useful method in where we get the in scope variables, such as name
+//console.log(getName());
+
 class IndecisionApp extends React.Component {
     render() {
         const title = 'Indecision';
@@ -53,13 +64,20 @@ class Option extends React.Component {
 }
 
 class Options extends React.Component {
-    removeAll(){
-        alert('Remove All');
+    
+    //this is done to use bind() handleremove all. need to override react.component
+    constructor(props) {
+        super(props);
+        this.handleRemoveAll = this.handleRemoveAll.bind(this);
+    }
+
+    handleRemoveAll(){
+        console.log(this.props.options);
     }
     render(){
         return (
             <div>
-                <button onClick={this.removeAll}>Remove All</button>
+                <button onClick={this.handleRemoveAll.bind(this)}>Remove All</button>
                 {
                   this.props.options.map((option) => <Option key={option} optionText={option} />)
                 }

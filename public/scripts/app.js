@@ -8,6 +8,17 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+// const obj = {
+//     name: 'Ed',
+//     getName() {
+//         return this.name;
+//     }
+// }
+
+// //a common problem is losing this reference
+// const getName = obj.getName.bind({name:'Edmund'}); //bind() is a useful method in where we get the in scope variables, such as name
+//console.log(getName());
+
 var IndecisionApp = function (_React$Component) {
     _inherits(IndecisionApp, _React$Component);
 
@@ -129,16 +140,20 @@ var Option = function (_React$Component4) {
 var Options = function (_React$Component5) {
     _inherits(Options, _React$Component5);
 
-    function Options() {
+    //this is done to use bind() handleremove all. need to override react.component
+    function Options(props) {
         _classCallCheck(this, Options);
 
-        return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
+        var _this5 = _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).call(this, props));
+
+        _this5.handleRemoveAll = _this5.handleRemoveAll.bind(_this5);
+        return _this5;
     }
 
     _createClass(Options, [{
-        key: 'removeAll',
-        value: function removeAll() {
-            alert('Remove All');
+        key: 'handleRemoveAll',
+        value: function handleRemoveAll() {
+            console.log(this.props.options);
         }
     }, {
         key: 'render',
@@ -148,7 +163,7 @@ var Options = function (_React$Component5) {
                 null,
                 React.createElement(
                     'button',
-                    { onClick: this.removeAll },
+                    { onClick: this.handleRemoveAll.bind(this) },
                     'Remove All'
                 ),
                 this.props.options.map(function (option) {
