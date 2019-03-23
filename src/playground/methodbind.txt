@@ -1,0 +1,10 @@
+// const obj = {
+//     name: 'Ed',
+//     getName() {
+//         return this.name;
+//     }
+// }
+
+// //a common problem is losing this reference
+// const getName = obj.getName.bind({name:'Edmund'}); //bind() is a useful method in where we get the in scope variables, such as name
+//console.log(getName());
