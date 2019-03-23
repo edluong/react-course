@@ -26,7 +26,7 @@
             return {
                 count: prevState.count - 1
             };
-        })
+        });
     };
 
     handleReset() {
@@ -34,7 +34,16 @@
             return {
                 count: 0
             };
-        })
+        });
+
+        //will give unexpected results, if not passing in a function. Adds 1 when called
+        //setState is asynchronous
+        // this.setState({
+        //     count: 0
+        // });
+        // this.setState({
+        //     count: this.state.count + 1
+        // });
     };
     
     
