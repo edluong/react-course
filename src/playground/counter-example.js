@@ -6,7 +6,7 @@
         this.handleMinusOne = this.handleMinusOne.bind(this);
         this.handleReset = this.handleReset.bind(this);
         this.state = {   //setting up the default state
-            count: 0
+            count: props.count
         };
     }
 
@@ -58,6 +58,10 @@
         );
     }
  };
+
+Counter.defaultProps = {
+    count: 0
+};
 
  ReactDOM.render(<Counter />,document.getElementById('app'));
 
