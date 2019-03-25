@@ -10,6 +10,26 @@ class IndecisionApp extends React.Component {
         };
     }
 
+    //life cycle method
+    //can only access in class based components
+    //fires when an event or when an instance is created
+    componentDidMount(){
+        console.log('fetching data');
+    }
+
+    //life cycle method
+    //fires after the component update, when props or state changes
+    //figuring out when a component's data changes
+    componentDidUpdate(prevProps, prevState){
+        console.log('saving data');
+    }
+
+    //life cycle method
+    //fires right before a component goes away
+    componentWillUnmount() {
+        console.log('componentWillUnmount');
+    }
+
     //this method is to pass to the Options child so it can have access to IndecisionApps options array
     handleDeleteOptions() {
         this.setState(() => ({ options: [] }));

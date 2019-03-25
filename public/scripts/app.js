@@ -26,10 +26,39 @@ var IndecisionApp = function (_React$Component) {
         return _this;
     }
 
-    //this method is to pass to the Options child so it can have access to IndecisionApps options array
+    //life cycle method
+    //can only access in class based components
+    //fires when an event or when an instance is created
 
 
     _createClass(IndecisionApp, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            console.log('fetching data');
+        }
+
+        //life cycle method
+        //fires after the component update, when props or state changes
+        //figuring out when a component's data changes
+
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps, prevState) {
+            console.log('saving data');
+        }
+
+        //life cycle method
+        //fires right before a component goes away
+
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            console.log('componentWillUnmount');
+        }
+
+        //this method is to pass to the Options child so it can have access to IndecisionApps options array
+
+    }, {
         key: 'handleDeleteOptions',
         value: function handleDeleteOptions() {
             this.setState(function () {
