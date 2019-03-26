@@ -6,7 +6,7 @@ class IndecisionApp extends React.Component {
         this.handleAddOption = this.handleAddOption.bind(this);
         this.handleDeleteOption = this.handleDeleteOption.bind(this);
         this.state = {
-            options: props.options
+            options: []
         };
     }
 
@@ -101,11 +101,6 @@ class IndecisionApp extends React.Component {
         );
     }
 }
-
-// setting the default options to have nothing if no props are provided
-IndecisionApp.defaultProps = {
-    options: []
-};
 
 //stateless functional component
 // Display the title and subtitle
