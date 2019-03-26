@@ -14,14 +14,28 @@ class IndecisionApp extends React.Component {
     //can only access in class based components
     //fires when an event or when an instance is created
     componentDidMount(){
-        console.log('fetching data');
+
+        try {
+            const json = localStorage.getItem('options');
+            const options = JSON.parse(json);
+            
+            //look to see if options is not empty
+            if (options) {
+             this.setState(() => ({options}));
+            }
+        } catch(e){
+            //do nothing if the json data is invalid
+        }
     }
 
     //life cycle method
     //fires after the component update, when props or state changes
     //figuring out when a component's data changes
     componentDidUpdate(prevProps, prevState){
-        console.log('saving data');
+        if(prevState.options.length !== this.state.options.length){
+            const json = JSON.stringify(this.state.options); //make a string representation of JSON
+            localStorage.setItem('options', json); //localstorage can only hold strings
+        }
     }
 
     //life cycle method
@@ -151,6 +165,7 @@ const Options = (props) => {
     return (
         <div>
             <button onClick={props.handleDeleteOptions}>Remove All</button>
+            {props.options.length === 0 && <p>Please add an option to get started!</p>}
             {
               props.options.map((option) => ( 
               <Option 
@@ -181,6 +196,11 @@ class AddOption extends React.Component {
         
 
         this.setState(() => ({error})); //returning an error object if found. identical statment to error: error
+
+        //if there is invalid data, wipe the data
+        if(!error){
+            e.target.elements.option.value = '';
+        }
      }
     
      //don't forget to have this in front of the method

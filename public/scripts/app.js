@@ -34,7 +34,20 @@ var IndecisionApp = function (_React$Component) {
     _createClass(IndecisionApp, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            console.log('fetching data');
+
+            try {
+                var json = localStorage.getItem('options');
+                var options = JSON.parse(json);
+
+                //look to see if options is not empty
+                if (options) {
+                    this.setState(function () {
+                        return { options: options };
+                    });
+                }
+            } catch (e) {
+                //do nothing if the json data is invalid
+            }
         }
 
         //life cycle method
@@ -44,7 +57,10 @@ var IndecisionApp = function (_React$Component) {
     }, {
         key: 'componentDidUpdate',
         value: function componentDidUpdate(prevProps, prevState) {
-            console.log('saving data');
+            if (prevState.options.length !== this.state.options.length) {
+                var json = JSON.stringify(this.state.options); //make a string representation of JSON
+                localStorage.setItem('options', json); //localstorage can only hold strings
+            }
         }
 
         //life cycle method
@@ -218,6 +234,11 @@ var Options = function Options(props) {
             { onClick: props.handleDeleteOptions },
             'Remove All'
         ),
+        props.options.length === 0 && React.createElement(
+            'p',
+            null,
+            'Please add an option to get started!'
+        ),
         props.options.map(function (option) {
             return React.createElement(Option, {
                 key: option,
@@ -255,6 +276,11 @@ var AddOption = function (_React$Component2) {
             this.setState(function () {
                 return { error: error };
             }); //returning an error object if found. identical statment to error: error
+
+            //if there is invalid data, wipe the data
+            if (!error) {
+                e.target.elements.option.value = '';
+            }
         }
 
         //don't forget to have this in front of the method
