@@ -9,5 +9,6 @@
 * ES6 (syntax, classes, let vs const)
 * Component Props and States
 * Stateless Function Components / Class Based Components
+* Lifecycle Methods
 * Webpack
 * LocalStorage (Persisting Data)
