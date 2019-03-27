@@ -1,1 +1,13 @@
 # React Course
+
+## Topics Covered:
+
+* Components
+* JSX
+* Babel CLI and Core
+* Babel Presets
+* ES6 (syntax, classes, let vs const)
+* Component Props and States
+* Stateless Function Components / Class Based Components
+* Webpack
+* LocalStorage (Persisting Data)
