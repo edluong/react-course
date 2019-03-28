@@ -2,14 +2,11 @@ import React from 'react';
 
 //export default is ok with class but NOT with constants
 export default class AddOption extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleAddOption = this.handleAddOption.bind(this);
-        this.state = {
-            error: undefined
-        };
-    }
-    handleAddOption(e){
+    state = {
+        error: undefined
+    };
+
+    handleAddOption = (e) => { // using plugin transform-class-properties, no need to bind properties
 
         e.preventDefault(); //prevent fullpage refresh
 

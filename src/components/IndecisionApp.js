@@ -5,17 +5,47 @@ import Action from './Action';
 import Options from './Options';
 
 class IndecisionApp extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
-        this.handlePick = this.handlePick.bind(this);
-        this.handleAddOption = this.handleAddOption.bind(this);
-        this.handleDeleteOption = this.handleDeleteOption.bind(this);
-        this.state = {
-            options: []
-        };
-    }
+    state = { // due to babel plugin 'transform class properties', do not need constructor and no need to assign with this
+        options: []
+    };
 
+     //this method is to pass to the Options child so it can have access to IndecisionApps options array
+     handleDeleteOptions = () => {
+        this.setState(() => ({ options: [] }));
+        // using parenthesis before {}, we can return an object instead of undefined; syntax ({}) for arrow function
+    };
+
+    // method to pass down to Action Component child
+    // pick an option for the computer to do
+    handlePick = () => {
+        const randomNum = Math.floor(Math.random() * this.state.options.length);
+        const option = this.state.options[randomNum];
+        alert(option);
+     };
+
+    // do some validation on the input
+    // make sure something was added
+    // make sure it is not a duplicate item
+     handleAddOption = (option) => {
+        
+      
+        if (!option) {
+            return 'Enter valid value to add item';
+        }else if (this.state.options.indexOf(option) > -1) { 
+            return 'This option already exists';
+        }
+
+        //set the state, adding a new array with the new option into the list of Options
+        this.setState( (prevState) => ({options: prevState.options.concat(option) }));
+    };
+
+     //method to remove a singular option from the Options list
+     handleDeleteOption = (optionToRemove) => {
+        this.setState((prevState) => ({
+            options: prevState.options.filter((option) => optionToRemove !== option) //if the option to remove is not equal to the option, then return false for the option
+        }));
+    };
+ 
     //life cycle method
     //can only access in class based components
     //fires when an event or when an instance is created
@@ -48,42 +78,6 @@ class IndecisionApp extends React.Component {
     //fires right before a component goes away
     componentWillUnmount() {
         console.log('componentWillUnmount');
-    }
-
-    //this method is to pass to the Options child so it can have access to IndecisionApps options array
-    handleDeleteOptions() {
-        this.setState(() => ({ options: [] }));
-        // using parenthesis before {}, we can return an object instead of undefined; syntax ({}) for arrow function
-    }
-    
-    //method to remove a singular option from the Options list
-    handleDeleteOption(optionToRemove) {
-        this.setState((prevState) => ({
-            options: prevState.options.filter((option) => optionToRemove !== option) //if the option to remove is not equal to the option, then return false for the option
-        }));
-    }
-
-    // method to pass down to Action Component child
-    // pick an option for the computer to do
-    handlePick() {
-       const randomNum = Math.floor(Math.random() * this.state.options.length);
-       const option = this.state.options[randomNum];
-       alert(option);
-    }
-
-    handleAddOption(option){
-        
-        // do some validation on the input
-        // make sure something was added
-        // make sure it is not a duplicate item
-        if (!option) {
-            return 'Enter valid value to add item';
-        }else if (this.state.options.indexOf(option) > -1) { 
-            return 'This option already exists';
-        }
-
-        //set the state, adding a new array with the new option into the list of Options
-        this.setState( (prevState) => ({options: prevState.options.concat(option) }));
     }
 
     render() {
