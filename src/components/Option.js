@@ -4,8 +4,7 @@ import React from 'react';
 //deals with creating a functional component for Options to be displayed
 //we are passing in an event because this will automatically bind() handleDeleteOption to "this"; es6 functionality
 //We do not want to pass handleDeleteOption up to IndecisionApp but have it with the correct optionText
- const Option = (props) => {
-    return (
+ const Option = (props) => (
         <div>
             {props.optionText}
             <button 
@@ -16,7 +15,7 @@ import React from 'react';
                 remove
             </button>
         </div>
-    );
-};
+);
+
 
 export default Option

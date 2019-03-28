@@ -2,8 +2,8 @@ import React from 'react'
 
 //stateless functional component
 //deals with the computer choosing which option to take
-const Action = (props) => {
-    return (
+const Action = (props) => (
+    
         <div>
             <button 
             onClick={props.handlePick}
@@ -12,7 +12,7 @@ const Action = (props) => {
             What should I do?
             </button>
         </div>
-    );
-};
+);
+
 
 export default Action;
