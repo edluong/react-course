@@ -3,10 +3,12 @@ import AddOption from './AddOption'; //webpack knows to look for .js files; can 
 import Header from './Header';
 import Action from './Action';
 import Options from './Options';
+import OptionModal from './OptionModal';
 
 class IndecisionApp extends React.Component {
     state = { // due to babel plugin 'transform class properties', do not need constructor and no need to assign with this
-        options: []
+        options: [],
+        selectedOption: undefined
     };
 
      //this method is to pass to the Options child so it can have access to IndecisionApps options array
@@ -20,15 +22,15 @@ class IndecisionApp extends React.Component {
     handlePick = () => {
         const randomNum = Math.floor(Math.random() * this.state.options.length);
         const option = this.state.options[randomNum];
-        alert(option);
+        this.setState(() => ({
+            selectedOption: option
+        }));
      };
 
     // do some validation on the input
     // make sure something was added
     // make sure it is not a duplicate item
      handleAddOption = (option) => {
-        
-      
         if (!option) {
             return 'Enter valid value to add item';
         }else if (this.state.options.indexOf(option) > -1) { 
@@ -45,12 +47,18 @@ class IndecisionApp extends React.Component {
             options: prevState.options.filter((option) => optionToRemove !== option) //if the option to remove is not equal to the option, then return false for the option
         }));
     };
+
+    //method to clear the selectedOption to the default state
+    handleCloseModal = () => {
+        this.setState(() => ({
+            selectedOption: undefined
+        }));
+    };
  
     //life cycle method
     //can only access in class based components
     //fires when an event or when an instance is created
     componentDidMount(){
-
         try {
             const json = localStorage.getItem('options');
             const options = JSON.parse(json);
@@ -97,6 +105,10 @@ class IndecisionApp extends React.Component {
                 <AddOption
                     handleAddOption={this.handleAddOption}
                  />  
+                 <OptionModal 
+                    selectedOption={this.state.selectedOption}
+                    handleCloseModal={this.handleCloseModal}
+                 /> 
             </div>
         );
     }
