@@ -12,3 +12,4 @@
 * Lifecycle Methods
 * Webpack
 * LocalStorage (Persisting Data)
+* SCSS and SCSS Structuring
