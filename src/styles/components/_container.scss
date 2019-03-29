@@ -1,0 +1,5 @@
+.container {
+    max-width: 60rem;   // control the max container size; used to center content
+    margin: 0 auto;     // left and right will be auto while top and bottom none
+    padding: 0 $m-size; // increase the inner size of the space
+}

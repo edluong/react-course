@@ -92,19 +92,21 @@ class IndecisionApp extends React.Component {
         const subtitle = 'Put your life in the hands of a computer';
         return (
             <div>
-                <Header subtitle={subtitle} />
-                <Action 
+               <Header subtitle={subtitle} />
+               <div className="container">
+                    <Action 
                     hasOptions={this.state.options.length > 0} 
                     handlePick={this.handlePick}
-                />
-                <Options 
+                    />
+                    <Options 
                     options={this.state.options} 
                     handleDeleteOptions={this.handleDeleteOptions}
                     handleDeleteOption={this.handleDeleteOption}
-                />
-                <AddOption
+                    />
+                    <AddOption
                     handleAddOption={this.handleAddOption}
-                 />  
+                    />               
+               </div>
                  <OptionModal 
                     selectedOption={this.state.selectedOption}
                     handleCloseModal={this.handleCloseModal}
