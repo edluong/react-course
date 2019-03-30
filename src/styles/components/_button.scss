@@ -1,0 +1,35 @@
+//Big Button
+.big-button {
+    background: $purple;
+    border: none; //remove the grey borders from the button
+    border-bottom: .6rem solid darken($purple, 10%);//gives the button a 3D effect
+    color: white;
+    font-weight: bold;
+    font-size: $l-size;
+    margin-bottom: $xl-size; //have a space between the button options
+    padding: 2.4rem;  //spacing inside the button
+    width: 100%; //make sure the button takes the entire width of the application
+}
+
+.big-button:disabled {
+    opacity: .5; // change the button to be lighter
+}
+
+//Button
+.button {
+    background: $purple;
+    border: none;
+    border-bottom: .3rem solid darken($purple, 10%);
+    color:white;
+    font-weight: 500;
+    padding: $s-size;
+}
+
+//bem-modifier
+//modifiers in the bem standards uses two hyphens
+.button--link {
+    background: none; //no color button
+    border: none; //no border
+    color: $off-white;
+    padding: 0;
+}
