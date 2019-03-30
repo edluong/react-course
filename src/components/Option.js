@@ -5,8 +5,8 @@ import React from 'react';
 //we are passing in an event because this will automatically bind() handleDeleteOption to "this"; es6 functionality
 //We do not want to pass handleDeleteOption up to IndecisionApp but have it with the correct optionText
  const Option = (props) => (
-        <div>
-            {props.optionText}
+        <div className="option">
+            <p className="option__text">{props.count}. {props.optionText}</p>
             <button
                 className="button button--link" 
                 onClick={(e) => {

@@ -1,0 +1,24 @@
+//add option error
+.add-option-error {
+    color: $off-white;
+    font-style: italic;
+    margin: $m-size 0 0 0;
+    padding: 0 $m-size;
+}
+
+//add option
+.add-option {
+    display: flex; //use flex box
+    padding: $m-size;
+}
+
+//add option input
+.add-option__input {
+    background: $dark-blue;
+    border: none;
+    color: $off-white; // have an off white color for the input text
+    border-bottom: .3rem solid darken($dark-blue,10%); //have a darker blue on the bottom
+    flex-grow: 1; //grow by the available space using flexbox
+    margin-right: $s-size; //set a spacing between the input and the button
+    padding: $s-size; //this gives the inputted value some spacing
+}
