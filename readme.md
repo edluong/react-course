@@ -15,3 +15,4 @@
 * SCSS and SCSS Structuring
 * CSS Reset / Normalize.css
 * BEM Methodology
+* Flexbox

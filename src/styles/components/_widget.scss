@@ -1,0 +1,27 @@
+//widget
+.widget {
+    background: $light-blue;
+    margin-bottom: $xl-size; //added so there is space in the app; not touching the edge of screen
+}
+
+//Widget Message
+.widget__message {
+    border-bottom: 1px solid lighten($light-blue,10%); //using pixel is okay for small borders
+    color: $off-white;
+    margin: 0;
+    padding: $l-size;
+    text-align: center;
+}
+
+// Widget Header
+.widget-header {
+    background: $blue; //dark shade of blue for the background
+    color: $off-white;
+    display: flex; //use flexbox to display "Your Options" on the left; "remove all" on the right
+    justify-content: space-between; //another flexbox property; this will help push your options to the left, remove all to the right
+    padding: $m-size; //have some inner spacing
+}
+
+.widget-header__title {
+    margin: 0;
+}
