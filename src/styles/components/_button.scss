@@ -6,7 +6,7 @@
     color: white;
     font-weight: bold;
     font-size: $l-size;
-    margin-bottom: $xl-size; //have a space between the button options
+    margin-bottom: $m-size; 
     padding: 2.4rem;  //spacing inside the button
     width: 100%; //make sure the button takes the entire width of the application
 }
@@ -32,4 +32,11 @@
     border: none; //no border
     color: $off-white;
     padding: 0;
+}
+
+//for desktops use these css settings
+@media (min-width: $desktop-breakpoint) {
+    .big-button {
+        margin-bottom: $xl-size; //have a space between the button options
+    }
 }

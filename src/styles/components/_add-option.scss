@@ -9,6 +9,7 @@
 //add option
 .add-option {
     display: flex; //use flex box
+    flex-direction: column; //flex box 
     padding: $m-size;
 }
 
@@ -19,6 +20,19 @@
     color: $off-white; // have an off white color for the input text
     border-bottom: .3rem solid darken($dark-blue,10%); //have a darker blue on the bottom
     flex-grow: 1; //grow by the available space using flexbox
-    margin-right: $s-size; //set a spacing between the input and the button
+    margin: 0 0 $s-size 0; //this is done for mobile devices
+  
     padding: $s-size; //this gives the inputted value some spacing
+}
+
+//css feature @media
+//this is used to target larger screen; not mobile devices
+@media (min-width: $desktop-breakpoint) {
+   .add-option {
+       flex-direction: row; //used with flexbox
+   }
+
+   .add-option__input {
+        margin-right: 0 $s-size 0 0; //set a spacing between the input and the button
+   }
 }

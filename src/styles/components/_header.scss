@@ -1,7 +1,7 @@
 .header {
     color: white;
     background: $off-black;
-    margin-bottom: $xl-size;     //space between header and the component below it
+    margin-bottom: $m-size;     //space between header and the component below it
     padding: $m-size 0; //putting 1.6 rem top and bot and 0rem left and right
 }
 
@@ -16,4 +16,10 @@
     color: $off-white; 
     font-size: $m-size;
     font-weight: 500; //thickness of the font
+}
+
+@media (min-width: $desktop-breakpoint) {
+    .header {
+        margin-bottom: $xl-size;
+    }
 }
